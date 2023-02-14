@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="UTF-8">
+    <link media="all" rel="stylesheet" th:href="@{/css/index-style.css}" type="text/css"/>
+    <title>Quotes</title>
+</head>
+<body>
+<div class="container">
+    <div class="up-menu">
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/profile/__${user.username}__}">
+                <input type="button" value="Profile" class="up-menu-button">
+            </a>
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">
+                <input type="button" value="Profile" class="up-menu-button">
+            </a>
+        </div>
+
+        <div>
+            <a th:href="@{/top_10_quotes}">
+                <input type="button" value="Top 10" class="up-menu-button">
+            </a>
+        </div>
+
+        <div>
+            <a th:href="@{/flop_10_quotes}">
+                <input type="button" value="Flop 10" class="up-menu-button">
+            </a>
+        </div>
+
+        <div>
+            <a th:href="@{/last_quote}">
+                <input type="button" value="Last" class="up-menu-button">
+            </a>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="quotes">
+            <div class="random-quote">
+                <td th:text="${randomQuote}"></td>
+            </div>
+
+            <th:block th:each="quote : ${allQuotes}">
+                <div  class="quote">
+                    <p class="quote-text">
+                        <td th:text="${quote.quote}"></td>
+                        - votes : <td th:text="${quote.votes}"></td>
+                        - date : <td th:text="${quote.dateOfCreation}"></td>
+                    </p>
+
+                    <div class="vote-buttons">
+                        <div>
+                            <a th:href="@{/index/upvote/__${quote.id}__}">
+                                <input type="button" value="+" class="action-button">
+                            </a>
+                        </div>
+
+                        <div>
+                            <a th:href="@{/index/downvote/__${quote.id}__}">
+                                <input type="button" value="-" class="action-button">
+                            </a>
+                        </div>
+
+                        <div th:if="${quote.creator == username}">
+                            <a th:href="@{/modify/__${quote.id}__}">
+                                <input type="button" value="Modify" class="action-button">
+                            </a>
+                        </div>
+
+                        <div th:if="${quote.creator == username}">
+                            <form th:method="DELETE" th:action="@{delete/__${quote.id}__}">
+                                <input type="submit" value="Delete" class="action-button">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="quote-creator">
+                        <a th:href="@{/profile/__${quote.creator}__}">Posted by <td th:text="${quote.creator}"></td></a>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        <div class="login-register-user">
+            <div sec:authorize="isAuthenticated()" class="user-info">
+                <a th:href="@{/profile/__${user.username}__}" th:text='${username}'></a>
+                <br>
+
+                <a th:href="@{/logout}">
+                    <input type="button" value="Logout" class="action-button">
+                </a>
+                <br>
+
+                <a th:href="@{/add-quote}">
+                    <input type="button" value="Add quote" class="action-button">
+                </a>
+            </div>
+            <div sec:authorize="isAnonymous()" class="ref-to-login">
+                <a th:href="@{/login}">
+                    <input type="button" value="Login" class="action-button">
+                </a>
+
+                <br>
+
+                <a th:href="@{/register}">
+                    <input type="button" value="Register" class="action-button">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

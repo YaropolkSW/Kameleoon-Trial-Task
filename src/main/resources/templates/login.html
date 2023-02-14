@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/index-style.css">
+    <title>Login</title>
+</head>
+<body>
+<div class="container">
+    <div sec:authorize="isAuthenticated()">
+        <h2>You already logged in</h2>
+    </div>
+    <div sec:authorize="isAnonymous()">
+        <form method="POST" action="/login">
+            <h2>Logon</h2>
+            <div>
+                <table>
+                    <tr>
+                        <td>Username</td>
+                        <td>
+                            <input name="username" type="text" autofocus="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td>
+                            <input name="password" type="password"/>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+
+                <button type="submit">Login</button>
+                <a th:href="@{/register}">
+                    <input type="button" value="Register">
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

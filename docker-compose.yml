@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  app:
+    image: 'yaropolksw/kameleoon_trial_task:latest'
+    build:
+      context: .
+    container_name: app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:~/kameleoon_db_dev
+      - SPRING_DATASOURCE_USERNAME=yar
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"

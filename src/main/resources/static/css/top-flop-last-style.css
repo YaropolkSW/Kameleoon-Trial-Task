@@ -1,0 +1,89 @@
+body {
+    background-color: #f1f1f1;
+    color: #000000;
+
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Noto Sans Georgian";
+}
+
+.container {
+    max-width: 80%;
+    margin: auto;
+}
+
+.up-menu {
+    width: 100%;
+    display: table;
+}
+
+.up-menu-button {
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #e5ffe7;
+    cursor: pointer;
+}
+
+.up-menu div {
+    display: inline-block;
+    width: 20%;
+}
+
+.bottom {
+    width: 100%;
+}
+
+.bottom div {
+    display: inline-table;
+}
+
+.quotes {
+    width: 80%;
+}
+
+.login-register-user {
+    text-align: center;
+    width: 19%;
+}
+
+.quote {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin: 10px 0 10px 0;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #e5ffe7;
+}
+
+.quote-text {
+    margin: 0 0 10px 0;
+}
+
+.quote div {
+    display: inline-block;
+}
+
+.vote-buttons {
+    width: 29%;
+}
+
+.action-button {
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.vote-buttons div {
+    display: inline-block;
+    width: 24%;
+}
+
+.quote-creator {
+    width: 70%;
+    text-align: right;
+}
